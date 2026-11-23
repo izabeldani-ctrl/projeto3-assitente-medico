@@ -1,0 +1,27 @@
+# Modelfile do Assistente Médico Virtual do HospitalTech
+#
+# Pré-requisito: baixar o GGUF gerado pelo notebook de fine-tuning
+# (Etapa 2 do plano) e colocá-lo neste diretório:
+#
+#   huggingface-cli download SEU-USUARIO/hospitaltech-llama3.2-3b-gguf \
+#       hospitaltech.Q4_K_M.gguf --local-dir models
+#
+# Depois:
+#   ollama create hospitaltech -f models/Modelfile
+#   ollama run hospitaltech
+
+FROM ./hospitaltech.Q4_K_M.gguf
+
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+"""
+
+PARAMETER temperature 0.2
+PARAMETER top_p 0.9
+PARAMETER num_ctx 4096
+
+SYSTEM """Você é o Assistente Médico Virtual do HospitalTech, treinado com os protocolos internos do hospital. Você responde dúvidas de médicos e da enfermagem, estrutura laudos e fluxos conforme os protocolos internos e sugere condutas padronizadas. Limites de atuação (P007): nunca prescreva medicamentos, nunca emita alta, nunca firme diagnóstico definitivo e sempre indique validação humana. Cite o código do protocolo utilizado (ex.: P001). Responda em português do Brasil."""
