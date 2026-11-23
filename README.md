@@ -1,4 +1,4 @@
-# Projeto 2 — Assistente Médico Virtual (Fase 3)
+# Assistente Médico Virtual do HospitalTech — Tech Challenge Fase 3
 
 Assistente médico virtual do **HospitalTech** (cenário sintético): fine-tuning
 de um LLM (Llama 3.2 3B) com protocolos internos + pipeline **LangChain** com
@@ -6,21 +6,27 @@ fluxos **LangGraph**, consultas a prontuários estruturados (SQLite), camada de
 segurança (guardrails, auditoria e explainability) e modo híbrido com
 **DeepSeek API**.
 
-> 📋 Planejamento completo em [`../PLANO_EXECUCAO_FASE_3.md`](../PLANO_EXECUCAO_FASE_3.md)
+> 📦 Repositório dedicado da Fase 3 · Modelo fine-tuned publicado no
+> Hugging Face: [daniizabel/hospitaltech-llama3.2-3b-gguf](https://huggingface.co/daniizabel/hospitaltech-llama3.2-3b-gguf)
 
 ## Status
 
-- ⏳ Etapa 0 — Ambiente e acessos
-- 🚧 Etapa 1 — Dados sintéticos (em andamento)
-- ⏳ Etapas 2–3 — Fine-tuning (Colab + Unsloth) e integração Ollama
-- ⏳ Etapas 4–6 — Assistente LangChain/LangGraph + segurança + DeepSeek
-- ⏳ Etapas 7–10 — Avaliação, testes, documentação e vídeo
+- ✅ Etapa 0 — Ambiente e acessos
+- ✅ Etapa 1 — Dados sintéticos (protocolos P001–P007, dataset, prontuários)
+- ✅ Etapas 2–3 — Fine-tuning (Colab + Unsloth, loss 0.31) e integração Ollama
+- ✅ Etapas 4–6 — Assistente LangChain/LangGraph + segurança + DeepSeek híbrido
+- ✅ Etapa 7 — Avaliação base × fine-tuned (ROUGE-L 0.119 → 0.533 · juiz 2.3 → 3.7)
+- ✅ Etapa 8 — Testes automatizados (20 testes)
+- ✅ Etapa 9 — Documentação (README, relatório, checklist)
+- ⏳ Etapa 10 — Vídeo de demonstração (roteiro pronto em `reports/`)
 
 ## Estrutura
 
 ```text
-projeto2-assistente-medico/
+.
 ├── generate_data.py         # gera protocolos, dataset e prontuários sintéticos
+├── run_assistant.py         # CLI do assistente (LangGraph + guardrails)
+├── evaluate_model.py        # avaliação base × fine-tuned (ROUGE-L, fidelidade)
 ├── data/
 │   ├── protocols/           # protocolos internos P001–P007 (md)
 │   ├── fine_tune/           # train/val/test.jsonl (chat template Llama 3.2)
@@ -31,11 +37,23 @@ projeto2-assistente-medico/
 │   ├── assistant/           # LangChain + LangGraph
 │   └── security/            # guardrails, logging, auditoria
 ├── notebooks/
-│   └── colab_finetuning_llama32_3b.ipynb
-├── reports/
-├── tests/
+│   ├── colab_finetuning_llama32_3b.ipynb  # fine-tuning (Unsloth/QLoRA)
+│   └── demonstracao_fase3.ipynb           # demonstração ponta a ponta
+├── scripts/
+│   ├── build_colab_notebook.py  # regenera o notebook do Colab
+│   ├── build_demo_notebook.py   # regenera o notebook de demonstração
+│   ├── download_model.py        # baixa o GGUF do Hugging Face
+│   ├── make_figures.py          # figuras do relatório
+│   └── run_judge.py             # rubrica LLM-judge (DeepSeek)
+├── tests/                   # 20 testes automatizados
+├── results/
+│   ├── metrics/             # CSVs de avaliação + resumos (auto + juiz)
+│   └── figures/             # arquitetura + comparativo
 └── models/                  # Modelfile do Ollama (GGUF fica fora do git)
 ```
+
+> `reports/` (relatório técnico, guia do vídeo e checklist) fica fora do git,
+> como nas fases anteriores.
 
 ## Como gerar os dados sintéticos
 
@@ -74,7 +92,8 @@ python -m pytest tests -q
 ## Avaliação base × fine-tuned (Etapa 7)
 
 ```powershell
-python evaluate_model.py --comparar --limit 10
+python evaluate_model.py --comparar --limit 30
+python scripts/run_judge.py   # rubrica LLM-judge (DeepSeek) sobre os CSVs
 ```
 
 Resultados no holdout (`data/fine_tune/test.jsonl`), 30 amostras por modelo:
@@ -91,5 +110,6 @@ Artefatos: `results/metrics/avaliacao_*.csv`, `avaliacao_*_com_juiz.csv`,
 
 - Protocolos internos: `data/protocols/`
 - Fine-tuning: `notebooks/colab_finetuning_llama32_3b.ipynb`
-- Assistente: `src/assistant/` (em desenvolvimento)
-- Relatório técnico: `reports/relatorio_fase3.md` (em desenvolvimento)
+- Assistente: `src/assistant/`
+- Relatório técnico: `reports/relatorio_fase3.md` (local)
+- Guia do vídeo: `reports/guia_video_fase3.md` (local)

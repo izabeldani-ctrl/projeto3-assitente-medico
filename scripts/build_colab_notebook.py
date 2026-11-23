@@ -15,8 +15,8 @@ BASE = Path(__file__).resolve().parents[1]
 OUT = BASE / "notebooks" / "colab_finetuning_llama32_3b.ipynb"
 
 RAW_BASE = (
-    "https://raw.githubusercontent.com/izabeldani-ctrl/projeto2/main/"
-    "fase-3/projeto2-assistente-medico/data/fine_tune"
+    "https://raw.githubusercontent.com/izabeldani-ctrl/fase3-assistente-medico/"
+    "main/data/fine_tune"
 )
 
 SYSTEM_PROMPT_CELL = (
