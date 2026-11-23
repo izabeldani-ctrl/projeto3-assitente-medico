@@ -15,7 +15,7 @@ BASE = Path(__file__).resolve().parents[1]
 OUT = BASE / "notebooks" / "colab_finetuning_llama32_3b.ipynb"
 
 RAW_BASE = (
-    "https://raw.githubusercontent.com/izabeldani-ctrl/fase3-assistente-medico/"
+    "https://raw.githubusercontent.com/izabeldani-ctrl/projeto3-assitente-medico/"
     "main/data/fine_tune"
 )
 
