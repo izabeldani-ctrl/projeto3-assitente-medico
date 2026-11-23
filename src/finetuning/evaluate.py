@@ -70,4 +70,6 @@ def avaliar_modelo(gerar, amostras: list[dict], nome: str,
             **metricas_resposta(gerada, amostra["esperado"], scorer),
             "resposta_gerada": gerada[:500],
         })
+        print(f"  [{nome}] {i}/{len(amostras)} concluída (ROUGE-L={linhas[-1]['rougeL']})",
+              flush=True)
     return pd.DataFrame(linhas)

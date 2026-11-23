@@ -30,7 +30,13 @@ RESULTADOS_DIR = BASE / "results" / "metrics"
 
 
 def _gerador_ollama(modelo: str):
-    llm = ChatOllama(model=modelo, base_url=OLLAMA_BASE_URL, temperature=0.2)
+    llm = ChatOllama(
+        model=modelo,
+        base_url=OLLAMA_BASE_URL,
+        temperature=0.2,
+        num_predict=256,   # limita a resposta gerada (velocidade e comparabilidade)
+        num_ctx=2048,
+    )
 
     def gerar(pergunta: str) -> str:
         resp = llm.invoke([SystemMessage(SYSTEM_PROMPT), HumanMessage(pergunta)])
@@ -100,12 +106,12 @@ def main() -> int:
 
     modelos = (["llama3.2", "hospitaltech"] if args.comparar else [args.modelo])
     amostras = carregar_teste(BASE / "data" / "fine_tune" / "test.jsonl", limit=args.limit)
-    print(f"Amostras de teste: {len(amostras)}")
+    print(f"Amostras de teste: {len(amostras)}", flush=True)
 
     RESULTADOS_DIR.mkdir(parents=True, exist_ok=True)
     resumos = {}
     for modelo in modelos:
-        print(f"\nAvaliando modelo '{modelo}' ...")
+        print(f"\nAvaliando modelo '{modelo}' ...", flush=True)
         df = avaliar_modelo(_gerador_ollama(modelo), amostras, modelo, SYSTEM_PROMPT)
         if args.juiz:
             print("  aplicando rubrica LLM-judge (DeepSeek)...")
