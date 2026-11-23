@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 
 from src.assistant.config import LOGS_DIR
 from src.assistant.graph import criar_grafo, executar
@@ -42,6 +43,10 @@ def _formatar(resultado: dict) -> str:
 
 
 def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
     parser = argparse.ArgumentParser(description="Assistente Médico Virtual do HospitalTech")
     parser.add_argument("pergunta", nargs="+", help="pergunta ou contexto do atendimento")
     parser.add_argument("--paciente", type=int, default=None,
