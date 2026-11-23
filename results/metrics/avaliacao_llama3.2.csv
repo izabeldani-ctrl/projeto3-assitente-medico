@@ -1,0 +1,70 @@
+﻿modelo,id,pergunta,rougeL,fidelidade_protocolo,codigos_citados,codigos_esperados,tem_disclaimer,tem_prescricao,resposta_gerada
+llama3.2,1,Como tratar hipertensão em gestantes?,0.0505,0.0,['01'],['07'],False,False,"Tratar a hipertensão em gestantes é crucial para garantir a saúde da mãe e do feto. De acordo com o Protocolo P001 - Gestação Normal, a hipertensão em gestantes é definida como pressão arterial superior a 140/90 mmHg.
+
+**Diagnóstico e Avaliação**
+
+Antes de iniciar o tratamento, é importante realizar uma avaliação completa, incluindo:
+
+1. Análise de sangue para verificar o nível de proteína no sangue (proteinúria) e a presença de doenças renais.
+2. Exame físico para avaliar a pressão arterial e v"
+llama3.2,2,Para registro no prontuário: BI-RADS 5: qual o fluxo definido no protocolo?,0.0842,0.5,['01'],"['01', '02']",False,False,"Para registro no prontuário, quando o código BI-RADS 5 é utilizado, o fluxo definido no protocolo P001 é o seguinte:
+
+1. **Avaliação Inicial**: O médico ou enfermeiro deve realizar uma avaliação inicial do paciente, considerando a história clínica, os exames realizados e os resultados.
+2. **Revisão de Imagem**: O paciente deve ser remetido para revisão de imagem, seja por ultrassonografia, ressonância magnética ou mamografia, dependendo da natureza do exame.
+3. **Avaliação de Risco**: O médico o"
+llama3.2,3,Para registro no prontuário: Chegou na emergência uma paciente com dor torácica típica e supradesnivelamento de ST no ECG. Que fluxo o sistema dispara?,0.0925,0.0,['01'],"['05', '06']",False,False,"Para o registro do caso na emergência, o fluxo que o sistema dispara é o P001 - Fluxo de Emergência.
+
+Aqui está o fluxo de registro:
+
+1. **Registro Inicial** (P001.1):
+   - Registre o paciente como emergência, incluindo data e hora de chegada.
+   - Coletar informações básicas do paciente, como nome, idade, endereço, e dados de contato.
+
+2. **Análise Clínica** (P001.2):
+   - Coletar informações sobre a dor torácica, incluindo a localização, duração e intensidade.
+   - Coletar informações sobre o "
+llama3.2,4,"Caso clínico — paciente do sexo feminino, 41 anos: Troponina duvidosa em dor torácica: como conduzir?",0.1224,0.0,[],['05'],False,False,Não posso fornecer um diagnóstico ou prescrição médica. Posso ajudar com informações gerais sobre o assunto?
+llama3.2,5,Para registro no prontuário: Quais são os níveis de alerta da equipe médica?,0.0753,0.0,['07'],['06'],False,False,"Para registro no prontuário, de acordo com o protocolo P007, os níveis de alerta da equipe médica são:
+
+**Nível 1: Alerta de Baixo Nível**
+
+* Indica situações de baixo risco ou situações que não exigem imediata atenção médica.
+* Exemplos: solicitações de informações, acompanhamento de pacientes com condições estáveis, etc.
+
+**Nível 2: Alerta de Médico**
+
+* Indica situações que requerem atenção médica, mas não são de alta prioridade.
+* Exemplos: solicitações de consultas, avaliação de pacientes c"
+llama3.2,6,"Contexto ambulatorial, paciente de 61 anos: O que muda no rastreamento para alto risco?",0.0755,0.0,[],['01'],False,False,"Para pacientes de alto risco, é necessário ajustar o rastreamento para monitorar os seguintes fatores:
+
+1.  **Frequência de acompanhamento**: Aumentar a frequência de acompanhamento para cada 6 meses, em vez de 12 meses.
+2.  **Parâmetros de monitoramento**: Aumentar a monitorização de parâmetros como:
+    *   Glicemia: monitorar a glicemia diariamente, em vez de mensalmente.
+    *   Pressão arterial: monitorar a pressão arterial diariamente, em vez de mensalmente.
+    *   Fibrinogen: monitorar o"
+llama3.2,7,Qual a lista mínima de exames pré-consulta?,0.1026,0.0,['07'],['03'],False,False,"De acordo com o Protocolo P007, a lista mínima de exames pré-consulta é a seguinte:
+
+1. Anamnese clínica detalhada
+2. Exame físico completo
+3. Exame de laboratório padrão (ex.: análise de sangue, urina, febre, etc.)
+
+Essa lista pode variar de acordo com a natureza da consulta e a condição do paciente. No entanto, é fundamental realizar esses exames básicos para obter uma visão geral da situação do paciente e orientar a próxima etapa do tratamento.
+
+Código do protocolo: P007"
+llama3.2,8,"Caso clínico — paciente do sexo feminino, 45 anos: O que não pode faltar em um laudo de mamografia?",0.163,0.5,['01'],"['01', '04']",False,False,"De acordo com o Protocolo P001 - Laudo de Mamografia, é obrigatório incluir as seguintes informações em um laudo de mamografia:
+
+1.  **Dados do paciente**: Nome completo, data de nascimento, sexo, idade, data e hora da realização do exame, e identificação do paciente.
+2.  **Descrição do procedimento**: Detalhes sobre o tipo de mamografia realizada (digital, convencional ou de contraste), a técnica utilizada e a quantidade de contraste utilizado, se aplicável.
+3.  **Imagens produzidas**: Descriçã"
+llama3.2,9,"Caso clínico — paciente do sexo feminino, 55 anos: ECG normal e troponina normal: o que fazer?",0.0957,0.0,['03'],['05'],False,False,"Código de protocolo: P003
+
+Considerando os resultados do ECG e da troponina normal, não há sinais de infarto do miocárdio agudo. No entanto, é importante lembrar que a normalidade de um resultado não exclui uma condição subjacente.
+
+**Ação a ser adotada:**
+
+1. **Reavaliação clínica**: Realize uma reavaliação clínica completa, incluindo exame físico, histórico médico atualizado e perguntas abertas para obter mais informações sobre os sintomas do paciente.
+2. **Evalução de riscos**: Avalie o risco"
+llama3.2,10,Resuma o que diz o P002 sobre Documentação mínima.,0.181,0.5,['02'],"['02', '03']",False,False,"De acordo com o P002, a documentação mínima para atendimento em Consultório Médico é a seguinte:
+
+1.  **Histórico Clínico**: O histórico clínico do paciente deve ser atualizado e incluir as seguintes informações: *   Nome e data de nascimento do paciente; *   Endereço e telefone de contato; *   Data e hora do atendimento; *   Sintomas e histórico médico relevante; *   Medicamentos atuais e dosagem; *   Resultados de exames e testes realizados; *   Diagnóstico e tratamento proposto.
+2.  **Laudo M"

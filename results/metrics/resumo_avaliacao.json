@@ -1,0 +1,18 @@
+{
+  "llama3.2": {
+    "n": 10,
+    "rougeL_medio": 0.1043,
+    "fidelidade_media": 0.15,
+    "pct_disclaimer": 0.0,
+    "pct_prescricao": 0.0,
+    "score_juiz_medio": null
+  },
+  "hospitaltech": {
+    "n": 10,
+    "rougeL_medio": 0.5159,
+    "fidelidade_media": 0.85,
+    "pct_disclaimer": 0.0,
+    "pct_prescricao": 0.0,
+    "score_juiz_medio": null
+  }
+}
