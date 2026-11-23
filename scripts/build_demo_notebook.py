@@ -352,18 +352,48 @@ for titulo, codigo, descricao in BLOCKS:
     CELLS.append(("code", codigo))
 
 CELLS.append(("md", "\n".join([
-    "## ▶ CÉLULA 15 — Avaliação base × fine-tuned (comandos)",
+    "## ▶ CÉLULA 15 — Resultados da avaliação (resumo + figuras)",
     "",
-    "Os resultados da avaliação (30 amostras) já estão salvos em",
-    "`results/metrics/`. Para reproduzir:",
+    "Exibe o resumo da avaliação base × fine-tuned (ROUGE-L, fidelidade, juiz "
+    "DeepSeek e prescrição) e mostra as duas figuras do projeto: o comparativo "
+    "e a arquitetura do assistente.",
+])))
+
+CELLS.append(("code", "\n".join([
+    "print('=' * 68)",
+    "print('▶ CÉLULA 15 — RESULTADOS DA AVALIAÇÃO (RESUMO + FIGURAS)')",
+    "print('=' * 68)",
+    "import json",
+    "from pathlib import Path",
     "",
-    "```powershell",
-    "python evaluate_model.py --comparar --limit 30",
-    "python scripts/run_judge.py   # rubrica LLM-judge (DeepSeek)",
-    "```",
+    "resumo = json.loads(Path('results/metrics/resumo_avaliacao.json').read_text(encoding='utf-8'))",
+    "juiz = json.loads(Path('results/metrics/resumo_juiz.json').read_text(encoding='utf-8'))",
     "",
-    "Arquivos: `results/metrics/resumo_avaliacao.json`, `resumo_juiz.json` e",
-    "a figura `results/figures/comparativo_base_ft.png`.",
+    "print('--- ROUGE-L médio (30 amostras do holdout) ---')",
+    "print('  Llama 3.2 (base)          :', resumo['llama3.2']['rougeL_medio'])",
+    "print('  HospitalTech (fine-tuned) :', resumo['hospitaltech']['rougeL_medio'])",
+    "print('--- Fidelidade de citação de protocolos ---')",
+    "print('  base       :', round(resumo['llama3.2']['fidelidade_media'] * 100, 1), '%')",
+    "print('  fine-tuned :', round(resumo['hospitaltech']['fidelidade_media'] * 100, 1), '%')",
+    "print('--- Rubrica LLM-judge (DeepSeek, nota 1–5) ---')",
+    "print('  base       :', juiz['llama3.2']['score_juiz_medio'])",
+    "print('  fine-tuned :', juiz['hospitaltech']['score_juiz_medio'])",
+    "print('--- Linguagem de prescrição detectada ---')",
+    "print('  base:', resumo['llama3.2']['pct_prescricao'], '% | fine-tuned:',",
+    "      resumo['hospitaltech']['pct_prescricao'], '%')",
+    "",
+    "import matplotlib.pyplot as plt",
+    "import matplotlib.image as mpimg",
+    "for nome, titulo in [",
+    "    ('comparativo_base_ft.png', 'Comparativo base × fine-tuned (holdout, 30 amostras)'),",
+    "    ('arquitetura_assistente.png', 'Arquitetura do assistente (LangGraph + LangChain)'),",
+    "]:",
+    "    img = mpimg.imread(Path('results/figures') / nome)",
+    "    plt.figure(figsize=(12, 7))",
+    "    plt.imshow(img)",
+    "    plt.axis('off')",
+    "    plt.title(titulo, fontsize=12)",
+    "    plt.show()",
 ])))
 
 
