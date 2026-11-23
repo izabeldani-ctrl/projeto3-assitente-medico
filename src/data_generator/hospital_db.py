@@ -61,9 +61,17 @@ def build_hospital_db(path: Path, seed: int = 42) -> dict:
     today = date(2026, 11, 22)
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists():
-        path.unlink()
+    # Reescreve as tabelas no MESMO arquivo (sem apagar o banco): assim a
+    # geração funciona mesmo que outro processo tenha o arquivo aberto
+    # (ex.: kernel antigo do VS Code). PRAGMA busy_timeout evita
+    # "database is locked" em concorrência.
     conn = sqlite3.connect(path)
+    conn.execute("PRAGMA busy_timeout = 3000")
+    conn.executescript(
+        "DROP TABLE IF EXISTS exames; "
+        "DROP TABLE IF EXISTS alertas; "
+        "DROP TABLE IF EXISTS pacientes;"
+    )
     conn.executescript(CREATE_SQL)
 
     # ---- pacientes -------------------------------------------------------
