@@ -35,6 +35,15 @@ PADROES_PRESCRICAO = [
     re.compile(r"diagn[oó]stico\s+definitivo", re.IGNORECASE),
 ]
 
+# Termos que negam a linguagem proibida em uma janela curta antes do match
+NEGACOES = ("não", "nao", "nunca", "jamais", "nem")
+
+
+def _negado(texto: str, inicio: int) -> bool:
+    """Verifica se o trecho proibido está em contexto negado."""
+    janela = texto[max(0, inicio - 40):inicio].lower()
+    return any(neg in janela for neg in NEGACOES)
+
 RE_PROTOCOLO = re.compile(r"\bP0(0[1-9]|[1-9]\d)\b")
 RE_CONTEXTO_CLINICO = re.compile(
     r"\b(BI-RADS|bi[oó]psia|exame|protocolo|conduta|mamografia|"
@@ -63,9 +72,10 @@ def validar_saida(resposta: str, usou_contexto_clinico: bool) -> dict:
     avisos: list[str] = []
     texto = resposta.strip()
 
-    # 1) Linguagem proibida (prescrição/alta/diagnóstico)
+    # 1) Linguagem proibida (prescrição/alta/diagnóstico) — ignora contexto negado
     for pattern in PADROES_PRESCRICAO:
-        if pattern.search(texto):
+        m = pattern.search(texto)
+        if m and not _negado(texto, m.start()):
             avisos.append("padrão de linguagem proibida detectado (P007)")
             texto = (
                 texto

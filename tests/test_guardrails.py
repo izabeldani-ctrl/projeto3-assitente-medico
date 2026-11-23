@@ -39,6 +39,14 @@ def test_detecta_linguagem_de_prescricao():
     assert "não prescreve" in resultado["texto"]
 
 
+def test_negacao_nao_dispara_correcao():
+    texto = ("Este exame não constitui diagnóstico definitivo e o assistente "
+             "não prescreve medicamentos (P007).")
+    resultado = validar_saida(texto, usou_contexto_clinico=False)
+    assert not any("proibida" in aviso for aviso in resultado["avisos"])
+    assert "Correção automática" not in resultado["texto"]
+
+
 def test_saida_nao_clinica_nao_exige_fonte():
     resultado = validar_saida("Olá! Como posso ajudar?", usou_contexto_clinico=False)
     assert "Fonte" not in resultado["texto"]
