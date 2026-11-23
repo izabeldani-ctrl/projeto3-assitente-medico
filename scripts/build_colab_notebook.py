@@ -213,7 +213,7 @@ CELLS: list[tuple[str, str]] = [
         "repo_id = f'{HF_USER}/{OUT_MODEL}-gguf'",
         "api.create_repo(repo_id=repo_id, repo_type='model', exist_ok=True)",
         "api.upload_file(",
-        "    path_or_fileobj='hospitaltech_gguf/unsloth.Q4_K_M.gguf',",
+        "    path_or_fileobj='hospitaltech_gguf_gguf/Llama-3.2-3B-Instruct.Q4_K_M.gguf',",
         "    path_in_repo='hospitaltech.Q4_K_M.gguf',",
         "    repo_id=repo_id,",
         "    repo_type='model',",
