@@ -55,6 +55,7 @@ CELLS: list[tuple[str, str]] = [
         "if str(PROJ) not in sys.path:",
         "    sys.path.insert(0, str(PROJ))",
         "print('Pasta do projeto:', PROJ)",
+        "print('Interpretador   :', sys.executable)",
     ])),
     ("code", "\n".join([
         "# 1) Dataset de fine-tuning",
