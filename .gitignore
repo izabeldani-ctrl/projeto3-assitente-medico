@@ -9,6 +9,9 @@ venv/
 logs/
 *.log
 
+# Relatórios e guias (ficam fora do git, como na Fase 2)
+reports/
+
 # Modelos grandes (o GGUF é hospedado no Hugging Face Hub)
 models/*.gguf
 models/*.bin
