@@ -1,0 +1,20 @@
+# Segredos
+.env
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Logs e auditoria (gerados em execução)
+logs/
+*.log
+
+# Modelos grandes (o GGUF é hospedado no Hugging Face Hub)
+models/*.gguf
+models/*.bin
+
+# Cache Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
