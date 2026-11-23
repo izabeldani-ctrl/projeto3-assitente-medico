@@ -115,7 +115,7 @@ def figura_comparativo():
     ax.set_xticks(list(x))
     ax.set_xticklabels(metricas, fontsize=10)
     ax.set_ylim(0, 5.2)
-    ax.set_ylabel("Valor (R²-L e fidelidade: 0–1 · juiz: 1–5)", fontsize=9)
+    ax.set_ylabel("Valor (ROUGE-L e fidelidade: 0–1 · juiz: 1–5)", fontsize=9)
     ax.set_title("Comparativo base × fine-tuned (holdout, 30 amostras)",
                  fontsize=11.5, color=AZUL, fontweight="bold")
     ax.legend(fontsize=9, frameon=False)
