@@ -111,5 +111,3 @@ Artefatos: `results/metrics/avaliacao_*.csv`, `avaliacao_*_com_juiz.csv`,
 - Protocolos internos: `data/protocols/`
 - Fine-tuning: `notebooks/colab_finetuning_llama32_3b.ipynb`
 - Assistente: `src/assistant/`
-- Relatório técnico: `reports/relatorio_fase3.md` (local)
-- Guia do vídeo: `reports/guia_video_fase3.md` (local)
