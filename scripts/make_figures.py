@@ -95,11 +95,12 @@ def figura_arquitetura():
 
 
 def figura_comparativo():
-    metricas = ["ROUGE-L", "Fidelidade de\nprotocolos"]
-    base = [0.104, 0.15]
-    ft = [0.516, 0.85]
+    metricas = ["ROUGE-L", "Fidelidade de\nprotocolos", "Juiz DeepSeek\n(1–5)"]
+    base = [0.119, 0.18, 2.3]
+    ft = [0.533, 0.83, 3.7]
+    escalas = [1.0, 1.0, 5.0]
 
-    fig, ax = plt.subplots(figsize=(6.4, 4.4))
+    fig, ax = plt.subplots(figsize=(7.6, 4.6))
     x = range(len(metricas))
     w = 0.32
     b1 = ax.bar([i - w / 2 for i in x], base, w, label="Llama 3.2 (base)",
@@ -108,14 +109,14 @@ def figura_comparativo():
                 color=AZUL, edgecolor="#16324f")
     for bars in (b1, b2):
         for r in bars:
-            ax.text(r.get_x() + r.get_width() / 2, r.get_height() + 0.012,
+            ax.text(r.get_x() + r.get_width() / 2, r.get_height() + 0.035,
                     f"{r.get_height():.2f}", ha="center", fontsize=10,
                     color=AZUL, fontweight="bold")
     ax.set_xticks(list(x))
     ax.set_xticklabels(metricas, fontsize=10)
-    ax.set_ylim(0, 1.0)
-    ax.set_ylabel("Valor", fontsize=10)
-    ax.set_title("Comparativo base × fine-tuned (holdout, 10 amostras)",
+    ax.set_ylim(0, 5.2)
+    ax.set_ylabel("Valor (R²-L e fidelidade: 0–1 · juiz: 1–5)", fontsize=9)
+    ax.set_title("Comparativo base × fine-tuned (holdout, 30 amostras)",
                  fontsize=11.5, color=AZUL, fontweight="bold")
     ax.legend(fontsize=9, frameon=False)
     ax.spines[["top", "right"]].set_visible(False)

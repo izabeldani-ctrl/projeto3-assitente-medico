@@ -77,14 +77,15 @@ python -m pytest tests -q
 python evaluate_model.py --comparar --limit 10
 ```
 
-Resultados no holdout (`data/fine_tune/test.jsonl`), 10 amostras por modelo:
+Resultados no holdout (`data/fine_tune/test.jsonl`), 30 amostras por modelo:
 
-| Modelo | ROUGE-L | Fidelidade de protocolos | Prescrição |
-| --- | ---: | ---: | ---: |
-| Llama 3.2 3B (base) | 0.104 | 0.15 | 0% |
-| **HospitalTech (fine-tuned)** | **0.516** | **0.85** | **0%** |
+| Modelo | ROUGE-L | Fidelidade de protocolos | Prescrição | Juiz (1–5) |
+| --- | ---: | ---: | ---: | ---: |
+| Llama 3.2 3B (base) | 0.119 | 0.18 | 0% | 2.3 |
+| **HospitalTech (fine-tuned)** | **0.533** | **0.83** | **0%** | **3.7** |
 
-Artefatos: `results/metrics/avaliacao_*.csv` e `resumo_avaliacao.json`.
+Artefatos: `results/metrics/avaliacao_*.csv`, `avaliacao_*_com_juiz.csv`,
+`resumo_avaliacao.json` e `resumo_juiz.json`.
 
 ## Documentação
 
